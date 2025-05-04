@@ -3,7 +3,7 @@
 
 Step1: Creation of namespace
 kubectl create ns dev
-kubectl get ns
+kubectl get ns 
 
 Step2: Set resource quotas for namespace(k8s/labs/workloads/resourcequota.yaml)
 kubectl apply -f resourcequota.yaml
