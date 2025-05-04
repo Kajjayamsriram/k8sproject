@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  namespace: dev
+  labels:
+    app: mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      nodeSelector:
+        hostname: worker2
+      containers:
+      - name: mysql
+        image: mysql:5.6
+        resources:
+          limits:
+            memory: "800Mi"
+            cpu: "800m"
+          requests:
+            memory: "500Mi"
+            cpu: "500m"
+        envFrom:
+        - configMapRef:
+            name: mysql-config
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: MYSQL_ROOT_PASSWORD

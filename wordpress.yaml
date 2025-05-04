@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress
+  namespace: dev
+  labels:
+    app: wordpress
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wordpress
+  template:
+    metadata:
+      labels:
+        app: wordpress
+    spec:
+      nodeSelector:
+        hostname: worker1
+      containers:
+      - name: wordpress
+        image: wordpress
+        resources:
+          limits:
+            memory: "800Mi"
+            cpu: "800m"
+          requests:
+            memory: "500Mi"
+            cpu: "500m"
+        envFrom:
+        - configMapRef:
+            name: wordpress-config
+        env:
+        - name: WORDPRESS_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: wordpress-secret
+              key: WORDPRESS_DB_PASSWORD
+        volumeMounts:
+        - name: wordpress-storage
+          mountPath: /mnt/wordpress
+      volumes:
+      - name: wordpress-storage
+        persistentVolumeClaim:
+          claimName: hostpath-pvc
