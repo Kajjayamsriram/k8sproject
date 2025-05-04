@@ -1,4 +1,4 @@
-----Simple example to Deploy an Application Using the Kubernetes Dashboard----
+----Simple example to Deploy an Application and the Kubernetes Dashboard----
 =>Note: Kindly view it in raw
 
 Step1: Creation of namespace
