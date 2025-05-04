@@ -1,3 +1,5 @@
+----Simple exmaple to Deploy an Application Using the Kubernetes Dashboard----
+
 Step1: Creation of namespace
 kubectl create ns dev
 kubectl get ns
