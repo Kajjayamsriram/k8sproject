@@ -1,9 +1,12 @@
 ----Simple example to Deploy an Application and the Kubernetes Dashboard----
 =>Note: Kindly view it in raw
 
-Step1: Creation of namespace
+Step1: Creation of namespace and add labels to nodes
 kubectl create ns dev
 kubectl get ns 
+kubectl label node worker1 hostname=worker1
+kubectl label node worker2 hostname=worker2
+kubectl get nodes --show-labels
 
 Step2: Set resource quotas for namespace(k8s/labs/workloads/resourcequota.yaml)
 kubectl apply -f resourcequota.yaml
