@@ -73,6 +73,8 @@ kubectl exec -it <pod-id> -- env|grep WORDPRESS_DB_HOST
 Step9:Access wordpress from the browser by pasting the Service IP
 kubectl get svc wordpress-service -n dev
 
+![image](https://github.com/user-attachments/assets/a2993a9a-ece2-4a39-8898-8a7d00d2a27a)
+
 Step10: Deploy Kubernetes Dashboard
 curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
 sudo apt-get install apt-transport-https --yes
@@ -88,3 +90,5 @@ kubectl apply -f k8s-dashboard.yaml
 kubectl -n kubernetes-dashboard create token admin-user
 kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard-kong-proxy 8444:443
 https://localhost:8444
+![image](https://github.com/user-attachments/assets/27169a4a-d72f-4bd8-a866-6ae51d9056a5)
+
